@@ -84,9 +84,8 @@ The CSS file has been modified to remove all:
 
 This repository follows a structured branching workflow:
 
-- **`main`** - Production-ready code
-- **`stage`** - Pre-production testing
-- **`dev`** - Development and feature work
+hei??, konsi branch? padhai tune???
+college puch rha h kya
 
 Workflow: `dev` → `stage` → `main`
 
