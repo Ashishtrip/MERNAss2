@@ -80,15 +80,6 @@ The CSS file has been modified to remove all:
    npx serve .
    ```
 
-## Branch Structure
-
-This repository follows a structured branching workflow:
-
-hei??, konsi branch? padhai tune???
-college puch rha h kya
-
-Workflow: `dev` → `stage` → `main`
-
 ## Technologies Used
 
 - HTML5
