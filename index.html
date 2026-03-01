@@ -34,11 +34,15 @@
                     Photography is more than just capturing images—it's about telling stories through visuals. 
                     I love exploring the world through my lens, finding beauty in everyday moments.
                 </p>
-                <ol class="ben-lst">
-                    <li><strong>Preserves Memories:</strong> Capture moments you can cherish forever.</li>
-                    <li><strong>Encourages Creativity:</strong> Helps develop a unique visual perspective.</li>
-                    <li><strong>Reduces Stress:</strong> Provides a therapeutic escape from daily pressures.</li>
+                <ol class="ben-lst" id="hobby-list">
+                    <li><strong>Preserves Memories:</strong> Capture moments you can cherish forever. <button class="delete-btn">Delete</button></li>
+                    <li><strong>Encourages Creativity:</strong> Helps develop a unique visual perspective. <button class="delete-btn">Delete</button></li>
+                    <li><strong>Reduces Stress:</strong> Provides a therapeutic escape from daily pressures. <button class="delete-btn">Delete</button></li>
                 </ol>
+                <div class="hobby-input-container">
+                    <input type="text" id="hobby-input" placeholder="Enter a new benefit...">
+                    <button type="button" id="add-hobby-btn" class="btn-add">Add Benefit</button>
+                </div>
             </div>
         </section>
 
@@ -111,6 +115,7 @@
 
     <footer class="ftr">
         <div class="wrap">
+            <p id="datetime" class="datetime"></p>
             <div class="soc-lks">
                 <a href="https://www.linkedin.com/in/ashish-tripathi-aa6b5a214/" target="_blank">LinkedIn</a>
                 <a href="https://github.com/Ashishtrip" target="_blank">GitHub</a>
@@ -118,5 +123,7 @@
             <p>Ashish Deo Tripathi. All rights reserved.</p>
         </div>
     </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
