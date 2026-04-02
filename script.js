@@ -1,20 +1,26 @@
 const hobbyInput = document.getElementById('hobby-input');
 const addHobbyBtn = document.getElementById('add-hobby-btn');
 const hobbyList = document.getElementById('hobby-list');
+const hobbyError = document.getElementById('hobby-error');
+
 // Function to add a new hobby benefit
 function addHobbyBenefit() {
     const inputValue = hobbyInput.value.trim();
     if (inputValue === '') {
-        alert('Please enter a benefit before adding!');
+        hobbyInput.classList.add('input-error');
+        hobbyError.textContent = 'Please enter a benefit before adding!';
+        hobbyInput.focus();
         return;
     }
-    // Create new list item
+    // Create new list item without hardcoded prefix
     const newLi = document.createElement('li');
-    newLi.innerHTML = `<span><strong>New Benefit:</strong> ${inputValue}</span> <button class="delete-btn">Delete</button>`;
+    newLi.innerHTML = `<strong>${inputValue}:</strong> <button class="delete-btn" tabindex="0" aria-label="Delete this benefit">Delete</button>`;
     // Add to list
     hobbyList.appendChild(newLi);
-    // Clear input
+    // Clear input and reset state
     hobbyInput.value = '';
+    hobbyInput.classList.remove('input-error');
+    hobbyError.textContent = '';
 }
 // Add event listener to the Add button
 addHobbyBtn.addEventListener('click', addHobbyBenefit);
@@ -24,25 +30,38 @@ hobbyInput.addEventListener('keypress', function(e) {
         addHobbyBenefit();
     }
 });
-// Event delegation for delete buttons - handles both existing and new items
+// Event delegation for delete buttons - handles both click and keyboard
 hobbyList.addEventListener('click', function(e) {
     if (e.target.classList.contains('delete-btn')) {
         const li = e.target.parentElement;
         hobbyList.removeChild(li);
     }
 });
+hobbyList.addEventListener('keydown', function(e) {
+    if (e.target.classList.contains('delete-btn') && (e.key === 'Enter' || e.key === ' ')) {
+        e.preventDefault();
+        const li = e.target.parentElement;
+        hobbyList.removeChild(li);
+    }
+});
 // Contact Form Interactivity
 const contactForm = document.querySelector('.cont-form');
+const formSuccess = document.getElementById('form-success');
 contactForm.addEventListener('submit', function(e) {
     e.preventDefault(); // Prevent actual form submission
     // Get form values
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const message = document.getElementById('msg').value;
-    // Display confirmation alert
-    alert(`Thank you, ${name}! Your message has been submitted successfully.\n\nWe will contact you at ${email} soon.`);
-    // Reset the form
-    contactForm.reset();
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('msg').value.trim();
+    if (name && email && message) {
+        formSuccess.textContent = `Thank you, ${name}! Your message has been submitted successfully. We will contact you at ${email} soon.`;
+        formSuccess.classList.add('success-message');
+        // Reset the form
+        contactForm.reset();
+    } else {
+        formSuccess.textContent = 'Please fill in all fields.';
+        formSuccess.classList.add('error-message');
+    }
 });
 // Dynamic Footer - Date and Time
 const dateTimeDisplay = document.getElementById('datetime');
@@ -68,3 +87,4 @@ function updateDateTime() {
 // Update immediately and then every second
 updateDateTime();
 setInterval(updateDateTime, 1000);
+
